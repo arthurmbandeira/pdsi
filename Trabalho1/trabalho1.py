@@ -26,16 +26,16 @@ lennaUDTile = lennaTile.astype(np.uint8)
 lennaUDTileOut = Image.fromarray(lennaUDTile)
 lennaUDTileOut.save('out-ud-tile.png')
 
-#Faz o gradiente e exporta
-def gradiente(img, nivel, saida):
+#Faz o degrade e exporta
+def degrade(img, nivel, saida):
 	u = img.shape[0]
 	for i in range(img.shape[0]):
 		u -= nivel
 		for j in range(img.shape[1]):
 			img[i][j] *= (((i/2+j/2)/u/2))
-	gradient = img.astype(np.uint8)
-	gradientOut = Image.fromarray(gradient)
-	gradientOut.save(saida)
+	degradeImg = img.astype(np.uint8)
+	degradeImgOut = Image.fromarray(degradeImg)
+	degradeImgOut.save(saida)
 
 #Faz o contraste e exporta
 def contraste(img, nivel, saida):
@@ -47,5 +47,5 @@ def contraste(img, nivel, saida):
 #Passar nível de contraste: menor para mais claro, maior para mais escuro
 contraste(lennaTile, 0.5, 'out-ud-tile-contrast1.png')
 contraste(lennaTile, 2, 'out-ud-tile-contrast2.png')
-#Passar nível de gradiente (< 1): maior para mais claro, menor para mais escuro
-gradiente(lennaTile, 0.5, 'out-ud-tile-grad.png')
+#Passar nível de degrade (< 1): maior para mais claro, menor para mais escuro
+degrade(lennaTile, 0.5, 'out-ud-tile-grad.png')
